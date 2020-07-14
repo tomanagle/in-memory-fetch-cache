@@ -1,4 +1,6 @@
-Provides an in-memory cache layer for your fetch functions, making retreival faster
+# in-memory-fetch-cache 
+
+[![Build Status](https://travis-ci.org/tomanagle/in-memory-fetch-cache.svg?branch=master)](https://travis-ci.org/tomanagle/in-memory-fetch-cache)
 
 ## Usage
 ```js
