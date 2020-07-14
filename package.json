@@ -119,6 +119,7 @@
     "typedoc": "^0.12.0"
   },
   "dependencies": {
+    "pretty-format": "^26.1.0",
     "typescript": "^3.9.6"
   }
 }
