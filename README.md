@@ -1,3 +1,6 @@
+Provides an in-memory cache layer for your fetch functions, making retreival faster
+
+## Usage
 ```js
 /* 
 * Define a fetch function
