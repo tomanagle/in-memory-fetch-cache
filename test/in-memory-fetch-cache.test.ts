@@ -89,7 +89,7 @@ describe('in memory fetch cache', () => {
     expect(firstFetch.id).toBe(1)
     expect(firstFetch.name).toBe('Leanne Graham')
 
-    await cache.deleteByKey('1')
+    cache.deleteByKey('1')
 
     const secondFetch = await cache.getData({ id: 1 })
 
@@ -114,7 +114,7 @@ describe('in memory fetch cache', () => {
     expect(firstFetch.id).toBe(1)
     expect(firstFetch.name).toBe('Leanne Graham')
 
-    await cache.flush()
+    cache.flush()
 
     const secondFetch = await cache.getData({ id: 1 })
 
