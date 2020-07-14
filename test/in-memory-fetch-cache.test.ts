@@ -59,6 +59,8 @@ describe('in memory fetch cache', () => {
 
     expect(getDataSpy).toHaveBeenCalledTimes(2)
     expect(fetchFunctionSpy).toHaveBeenCalledTimes(2)
+
+    expect(Object.keys(await cache.dump())).toHaveLength(2)
   })
 
   it('it should not cache null values', async () => {

@@ -66,6 +66,10 @@ export class Cache<T, K> {
 
     return cacheLength
   }
+
+  async dump() {
+    return this.cache
+  }
 }
 
 export default Cache
