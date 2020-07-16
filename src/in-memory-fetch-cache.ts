@@ -40,13 +40,12 @@ export class Cache<T, K> {
     // @ts-ignore
     const item = this.cache[props[this.hashKey]]
 
-    // Fetch a fresh copy and add it to the cache
     if (!item || !Object.keys(this.cache).length || this.isCacheExpired(props)) {
+      // Use the fetch function and return it's result
       return this.fetchFunction(props).then((data: any) => {
         if (data) {
           // @ts-ignore
-          this.cache[props[this.hashKey]] = { ...data, fetchDate: new Date() }
-
+          this.cache[props[this.hashKey]] = { ...data, fetchDate: new Date(), lastUsed: new Date() }
           return data
         }
         return data
@@ -54,6 +53,9 @@ export class Cache<T, K> {
     }
 
     // Return the item from the cache
+    // @ts-ignore
+    // @ts-ignore
+    this.cache[props[this.hashKey]] = { ...data, lastUsed: new Date() }
     // @ts-ignore
     return Promise.resolve(this.cache[props[this.hashKey]])
   }
