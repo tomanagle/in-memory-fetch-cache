@@ -6,6 +6,7 @@
   "main": "dist/in-memory-fetch-cache.umd.js",
   "module": "dist/in-memory-fetch-cache.es5.js",
   "typings": "dist/types/in-memory-fetch-cache.d.ts",
+  "homepage": "https://github.com/tomanagle/in-memory-fetch-cache",
   "files": [
     "dist"
   ],
