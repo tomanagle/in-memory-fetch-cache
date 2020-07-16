@@ -149,4 +149,20 @@ describe('in memory fetch cache', () => {
     expect(getDataSpy).toHaveBeenCalledTimes(2)
     expect(fetchFunctionSpy).toHaveBeenCalledTimes(2)
   })
+
+  it('it should return the cache size', async () => {
+    const cache = new Cache<User, { id: number }>({
+      fetchFunction: dataSource.fetchFunction,
+      hashKey: 'id'
+    })
+
+    await cache.getData({ id: 1 })
+    await cache.getData({ id: 2 })
+
+    const size = cache.size()
+    expect(size).toMatchInlineSnapshot(`891`)
+
+    const itemOne = dataSource.fetchFunction({ id: 1 })
+    const itemtwo = dataSource.fetchFunction({ id: 2 })
+  })
 })

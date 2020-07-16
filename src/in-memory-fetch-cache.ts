@@ -1,3 +1,10 @@
+const bytes = (s: string) => {
+  return ~-encodeURI(s).split(/%..|./).length
+}
+const jsonSize = (s: any) => {
+  return bytes(JSON.stringify(s))
+}
+
 export class Cache<T, K> {
   cache: { [key: string]: T & { fetchDate: Date } }
   millisecondsToLive: number
@@ -26,6 +33,7 @@ export class Cache<T, K> {
   isCacheExpired(props: K) {
     // @ts-ignore
     const item = this.cache[props[this.hashKey]]
+
     return item ? item.fetchDate.getTime() + this.millisecondsToLive < new Date().getTime() : true
   }
   getData(props: K) {
@@ -63,8 +71,13 @@ export class Cache<T, K> {
     return cacheLength
   }
 
-  async dump() {
+  dump() {
     return this.cache
+  }
+
+  size() {
+    // Returns the size of the cache object in bytes
+    return jsonSize(this.cache)
   }
 }
 
