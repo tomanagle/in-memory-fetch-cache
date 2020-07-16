@@ -7,7 +7,9 @@
   "module": "dist/in-memory-fetch-cache.es5.js",
   "typings": "dist/types/in-memory-fetch-cache.d.ts",
   "homepage": "https://github.com/tomanagle/in-memory-fetch-cache",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "files": [
     "dist"
   ],
@@ -122,5 +124,9 @@
   "dependencies": {
     "ts-jest": "^26.1.2",
     "typescript": "^3.9.6"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
   }
 }
