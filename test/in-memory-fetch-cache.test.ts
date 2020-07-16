@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import path from 'path'
+import * as path from 'path'
 import Cache from '../src/in-memory-fetch-cache'
 
 import { User } from './user.dto'
@@ -37,6 +37,29 @@ describe('in memory fetch cache', () => {
 
     expect(getDataSpy).toHaveBeenCalledTimes(2)
     expect(fetchFunctionSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('it should fetch the data agin after the cache expires', async () => {
+    const fetchFunctionSpy = jest.spyOn(dataSource, 'fetchFunction')
+
+    const cache = new Cache<User, { id: number }>({
+      fetchFunction: dataSource.fetchFunction,
+      minutesToLive: -1,
+      hashKey: 'id'
+    })
+
+    const getDataSpy = jest.spyOn(cache, 'getData')
+
+    const firstFetch = await cache.getData({ id: 1 })
+    expect(firstFetch.id).toBe(1)
+    expect(firstFetch.name).toBe('Leanne Graham')
+    const secondFetch = await cache.getData({ id: 1 })
+
+    expect(secondFetch.id).toBe(1)
+    expect(secondFetch.name).toBe('Leanne Graham')
+
+    expect(getDataSpy).toHaveBeenCalledTimes(2)
+    expect(fetchFunctionSpy).toHaveBeenCalledTimes(2)
   })
 
   it('it should add all items to the cache', async () => {

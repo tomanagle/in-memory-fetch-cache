@@ -26,11 +26,7 @@ export class Cache<T, K> {
   isCacheExpired(props: K) {
     // @ts-ignore
     const item = this.cache[props[this.hashKey]]
-    if (item) {
-      const fetchDate = item.fetchDate
-      return fetchDate.getTime() + this.millisecondsToLive < new Date().getTime()
-    }
-    return true
+    return item ? item.fetchDate.getTime() + this.millisecondsToLive < new Date().getTime() : true
   }
   getData(props: K) {
     // @ts-ignore
