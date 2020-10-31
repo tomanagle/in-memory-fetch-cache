@@ -160,7 +160,7 @@ describe('in memory fetch cache', () => {
     await cache.getData({ id: 2 })
 
     const size = cache.size()
-    expect(size).toMatchInlineSnapshot(`891`)
+    expect(size).toMatchInlineSnapshot(`967`)
 
     const itemOne = dataSource.fetchFunction({ id: 1 })
     const itemtwo = dataSource.fetchFunction({ id: 2 })
