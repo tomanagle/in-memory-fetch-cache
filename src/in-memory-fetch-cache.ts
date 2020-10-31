@@ -55,7 +55,7 @@ export class Cache<T, K> {
     // Return the item from the cache
     // @ts-ignore
     // @ts-ignore
-    this.cache[props[this.hashKey]] = { ...data, lastUsed: new Date() }
+    this.cache[props[this.hashKey]] = { ...item, lastUsed: new Date() }
     // @ts-ignore
     return Promise.resolve(this.cache[props[this.hashKey]])
   }
